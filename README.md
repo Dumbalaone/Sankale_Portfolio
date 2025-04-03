@@ -18,4 +18,4 @@ To run this project locally:
 3. Open index.html in your browser.
 
 ## Deployment
-The portfolio is live at: [Add the link to your hosted portfolio].
+The portfolio is live at: https://dumbalaone.github.io/Sankale_Portfolio/
