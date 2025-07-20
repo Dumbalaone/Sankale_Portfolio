@@ -525,3 +525,54 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.background = originalGradient;
     });
 });
+
+// Hamburger Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.body;
+
+    // Toggle menu when hamburger is clicked
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('nav-open');
+        body.classList.toggle('no-scroll');
+    });
+
+    // Close menu when nav link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('nav-open');
+            body.classList.remove('no-scroll');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('nav-open');
+            body.classList.remove('no-scroll');
+        }
+    });
+
+    // Close menu on window resize if screen becomes large
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('nav-open');
+            body.classList.remove('no-scroll');
+        }
+    });
+
+    // Handle escape key to close menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('nav-open');
+            body.classList.remove('no-scroll');
+        }
+    });
+});
