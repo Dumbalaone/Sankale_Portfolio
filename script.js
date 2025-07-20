@@ -531,12 +531,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navOverlay = document.querySelector('.nav-overlay');
     const body = document.body;
 
     // Toggle menu when hamburger is clicked
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('nav-open');
+        navOverlay.classList.toggle('active');
         body.classList.toggle('no-scroll');
     });
 
@@ -545,17 +547,27 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('nav-open');
+            navOverlay.classList.remove('active');
             body.classList.remove('no-scroll');
         });
     });
 
-    // Close menu when clicking outside
+    // Close menu when clicking outside or on overlay
     document.addEventListener('click', function(e) {
         if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('nav-open');
+            navOverlay.classList.remove('active');
             body.classList.remove('no-scroll');
         }
+    });
+
+    // Close menu when clicking on overlay
+    navOverlay.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('nav-open');
+        navOverlay.classList.remove('active');
+        body.classList.remove('no-scroll');
     });
 
     // Close menu on window resize if screen becomes large
@@ -563,6 +575,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth > 768) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('nav-open');
+            navOverlay.classList.remove('active');
             body.classList.remove('no-scroll');
         }
     });
@@ -572,6 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') {
             hamburger.classList.remove('active');
             navMenu.classList.remove('nav-open');
+            navOverlay.classList.remove('active');
             body.classList.remove('no-scroll');
         }
     });
